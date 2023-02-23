@@ -5,6 +5,9 @@ csvArr.append("id,sport_key,commence,home_team,away_team,home_odds,home_bookie,h
 
 allowed_groups = ["Baseball", "American Football", "Aussie Rules", "Basketball", "Soccer", "Rugby League", "Cricket"]
 
+# total dollars to spend on each game
+total = 100
+
 def Average(lst):
     return sum(lst) / len(lst)
 
@@ -51,8 +54,8 @@ def process(resp):
         elif dictArr["Draw"]["odds"] > 0 and test < 1:
             profit_3(dictArr, str(i["home_team"]), str(i["away_team"]))
 
+# If there is a win / draw / loss scenario
 def profit_3(dictArr, home, away):
-    total = 100
     odds_one = dictArr[home]["odds"]
     odds_two = dictArr[away]["odds"]
     odds_draw = dictArr["Draw"]["odds"]
@@ -71,6 +74,7 @@ def profit_3(dictArr, home, away):
 
     csvArr.append(dictArr["details"]["id"] + "," + dictArr["details"]["sport_key"] + "," + str(dictArr["details"]["commence"]) + "," + home + "," + away + "," + str(odds_one) + "," + str(dictArr[home]["bookie"]) +  "," + str(wage_one) + "," + str(odds_two) + "," + str(dictArr[away]["bookie"]) + "," + str(wage_two) + "," + str(dictArr["Draw"]["odds"]) + "," + str(dictArr["Draw"]["bookie"]) + "," + str(wage_draw) + "," + str(Average([one_win, two_win, draw_win])))
 
+# If there is only a Win / Loss scenario
 def profit_2(dictArr, home, away):
     total = 100
     odds_one = dictArr[home]["odds"]

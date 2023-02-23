@@ -1,3 +1,5 @@
+# Py 3 calculator to calculate data for a win / draw / loss bet
+
 total = 100
 
 odds_one = 3.75
